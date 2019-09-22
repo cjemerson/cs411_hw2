@@ -21,9 +21,19 @@ void sortAndCull(std::vector<std::vector<int>> & bridges)
     {
         return a[0] < b[0] ||
             (a[0] == b[0] &&
-                (a[1] < b[1]) ||
-                (a[1] == b[1] && (a[2] >= b[2])));
+                ((a[1] < b[1]) ||
+                (a[1] == b[1] && (a[2] >= b[2]))));
     });
+
+    int last_w = -1, last_e = -1;
+
+    auto it = std::remove_if(bridges.begin(), bridges.end(), [&](const auto & a){
+        auto value = a[0] == last_w && a[1] == last_e;
+        last_w = a[0], last_e = a[1];
+        return value;
+    });
+
+    bridges.erase(it, bridges.end());
 }
 
 int build_worker(const std::vector<std::vector<int>> & bridges, int i = 0, int w = 0, int e = 0)
