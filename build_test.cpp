@@ -284,6 +284,7 @@ public:
     // Strong Guarantee
     Counter(const Counter & other)
     {
+        (void) other; // To suppress -Wunused-parameter
         if (copyThrow_)
             throw std::runtime_error("C");
         ++existing_;
@@ -302,6 +303,7 @@ public:
     // Strong Guarantee
     Counter & operator=(const Counter & rhs)
     {
+        (void) rhs; // To suppress -Wunused-parameter
         if (copyThrow_)
             throw std::runtime_error("A");
         ++assnCount_;
@@ -420,7 +422,10 @@ bool Counter::copyThrow_ = false;
 // Does not throw (No-Throw Guarantee)
 bool operator<(const Counter & a,
                const Counter & b)
-{ return false; }
+{
+    (void) a, (void) b; // To suppress -Wunused-parameter
+    return false;
+}
 
 
 // ************************************************************************
