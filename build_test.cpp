@@ -1010,7 +1010,7 @@ int main()
 
     // Wait for user
     std::cout << "Press ENTER to quit ";
-    while (std::cin.get() != '\n') ;
+    // while (std::cin.get() != '\n') ; // Commented-out for timing
 
     return 0;
 }

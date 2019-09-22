@@ -15,11 +15,14 @@
 #include<algorithm>
 #include "build_utility.h"
 
-void sort(std::vector<std::vector<int>> & bridges)
+void sortAndCull(std::vector<std::vector<int>> & bridges)
 {
     std::sort(bridges.begin(), bridges.end(), [](const auto & a, const auto & b)
     {
-        return a[0] < b[0];
+        return a[0] < b[0] ||
+            (a[0] == b[0] &&
+                (a[1] < b[1]) ||
+                (a[1] == b[1] && (a[2] >= b[2])));
     });
 }
 
@@ -60,7 +63,7 @@ int build(int w, int e, std::vector<std::vector<int>> bridges)
         return 0;
     }
 
-    sort(bridges);
+    sortAndCull(bridges);
 
     return build_worker(bridges);
 }
