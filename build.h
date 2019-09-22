@@ -17,21 +17,24 @@
 
 void sortAndCull(std::vector<std::vector<int>> & bridges)
 {
-    std::sort(bridges.begin(), bridges.end(), [](const auto & a, const auto & b)
-    {
-        return a[0] < b[0] ||
-            (a[0] == b[0] &&
-                ((a[1] < b[1]) ||
-                (a[1] == b[1] && (a[2] >= b[2]))));
-    });
+    std::sort(bridges.begin(), bridges.end(),
+        [](const auto & a, const auto & b)
+        {
+            return a[0] < b[0] ||
+                (a[0] == b[0] &&
+                    ((a[1] < b[1]) ||
+                    (a[1] == b[1] && (a[2] >= b[2]))));
+        });
 
     int last_w = -1, last_e = -1;
 
-    auto it = std::remove_if(bridges.begin(), bridges.end(), [&](const auto & a){
-        auto value = a[0] == last_w && a[1] == last_e;
-        last_w = a[0], last_e = a[1];
-        return value;
-    });
+    auto it = std::remove_if(bridges.begin(), bridges.end(),
+        [&](const auto & bridge)
+        {
+            auto value = bridge[0] == last_w && bridge[1] == last_e;
+            last_w = bridge[0], last_e = bridge[1];
+            return value;
+        });
 
     bridges.erase(it, bridges.end());
 }
