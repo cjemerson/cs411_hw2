@@ -16,6 +16,7 @@
 
 // Wrapper function
 // Calls build_recurse RECURSIVE
+// (See definition for documentation)
 int build(int w, int e, std::vector<std::vector<int>> bridges);
 
 #endif // #ifndef FILE_BUILD_H_INCLUDED
