@@ -1,5 +1,6 @@
 # cs411_hw2
 CS411 Homework 2 - Maximum Toll Bridges Problem [Exhaustive Search]
+
 Charles Emerson
 
 
@@ -50,7 +51,7 @@ def build_recurse(bridges, index = 0, nextWestCity = 0, nextEastCity = 0):
         max_toll = max(max_toll, temp)
 
     # Try without placing the currentBridge
-    temp = build_recurse(build_recurse, index + 1, nextWestCity, nextEastCity)
+    temp = build_recurse(bridges, index + 1, nextWestCity, nextEastCity)
     max_toll = max(max_toll, temp)
 
     # Return the cumulative maximum toll
