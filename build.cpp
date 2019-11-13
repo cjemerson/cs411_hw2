@@ -117,10 +117,7 @@ void sortAndCull(std::vector<std::vector<int>> & bridges)
     std::sort(bridges.begin(), bridges.end(),
         [](const auto & a, const auto & b)
         {
-            return a[0] < b[0] ||
-                (a[0] == b[0] &&
-                    ((a[1] < b[1]) ||
-                    (a[1] == b[1] && (a[2] >= b[2]))));
+            return std::forward_as_tuple(a[0], a[1], -a[2]) < std::forward_as_tuple(b[0], b[1], -b[2]);
         });
 
     // Cull every subsequent duplicate bridge after the first.

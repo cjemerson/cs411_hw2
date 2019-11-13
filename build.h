@@ -13,6 +13,7 @@
 
 #include <vector> // For std::vector
 #include <algorithm> // For std::sort, std::remove_if
+#include <tuple> // For std::forward_as_tuple
 
 // Wrapper function
 // Calls build_recurse RECURSIVE
